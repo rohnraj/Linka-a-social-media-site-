@@ -1,10 +1,19 @@
 const mongoose = require("mongoose");
 const plm = require("passport-local-mongoose");
-mongoose.connect(`mongodb://127.0.0.1:27017/instacloney`);
-
+mongoose.connect(`mongodb+srv://bbc12715:EORpvVzliDwYVJiZ@cluster0.pbm2rwp.mongodb.net/`)
+.then(function(){
+  console.log("connected to DB");
+})
+.catch(function(err){
+  console.log(err);
+})
 const userSchema = mongoose.Schema({
   username: String,
   name: String,
+  picture: {
+    type: String,
+    default: "def.png"
+  },
   stories: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "story"
